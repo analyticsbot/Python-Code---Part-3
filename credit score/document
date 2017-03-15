@@ -1,0 +1,137 @@
+Some questions I've
+
+_________________________________________________________________________________
+
+Step 1: Pre Bureau Check		
+		
+1. How long the bureau score will remain valid at our end? 30/60/90 days?
+2. All this pre-score testing happens at the front end. Right?
+3. Data points on the pre-check?
+	1. name
+	2. age
+	3. something like an SSN -- we cant ask too much data. So something like SSN can give a whole lot of data.
+
+Step 2: Post Bureau Check		
+		
+1. what data points we have on each user?
+2. veda as mentioned in the file is a really good indicator of credit history, but what we can do is
+	first ask the user for some basic data, if using that we cannot make a decision we go to veda. This is just to keep pricing in check.
+
+Step 3: Servicability		
+		
+two major score that has to be calculated
+	1. ICR 
+	2. DSR
+
+	can u explain in brief the significance of these scores.
+
+Step 4: Valuation	
+		
+run the model to get the score and send response to the user whether application is approved or not
+
+
+Data Sources
+1. veda - how do we get data from them. I was looking for data that we can source from them, but couldnt find anything credible on the internet. Any examples?
+
+
+Model
+
+There are 3 types of credit models 
+1. question or rule based model - something what we are currently doing. needs a lot of manually prepared question. not scablable plus the user will get bored. but highly accurate.
+2. stats based model - mostly logistic or tree based models such as random forrest regression/classification is used. needs historical data to run. the model needs to be updated and checked at regular intervals. 
+
+		1. logistic
+		2. random forrest-  
+		can be converted to rules easily
+
+		quick, simple logic
+		which can be converted into rules and credit policies, non parametric and can deal with
+		interactions. The down side of trees is that they unstable, small changes in data can lead
+		to large deviations in models, and can overfit if not built using cross validation and
+		pruning. 
+3. hybrid model - what we are using currently. mixes both of them. for the initial screening, a small number of QA is the best way, in the post-score, we can go for stats based.
+
+
+example-- let's visualize a small company that has come for the loan to buy cattle. here are some random figures that are made up.
+
+1. one way is of weighing different variables such as credit score, so for example
+Variable
+1 Loan to Collateral Value
+>70% <70%
+0 1
+2 Annual Turnover to Loan Value
+<3x >3x
+0 1
+3 Years in Business
+<1 >1
+0 1
+4 Current Ratio
+< 0.5 > 0.5
+0 1
+5 Total Assets (EUR)
+<100K > 100K
+0 1
+
+this is pretty simple. we assign boolean values to the fields. so the end result will be a score.
+
+Another scenario would be
+Variable
+1 Loan to Collateral Value
+>70% <70%
+0 3
+2 Annual Turnover to Loan Value
+<3x >3x
+0 2
+3 Years in Business
+<1 >1
+0 1
+4 Current Ratio
+< 0.5 > 0.5
+0 1
+5 Total Assets (EUR)
+<100K > 100K
+0 1
+
+we can play with the weights. we can also add more buckets according to our need.
+
+Statistical Scores
+Creating statistical scorecards requires extensive data on past borrowers in the same
+segment that will be scored. In our case, there is no data, particularly on problematic, or “bad”, clients.
+need to think of ways how we can bypass this. maybe in starting we do manually and then side by side we train the model and check its accuracy.
+we need good and bad clients.
+
+Question --- how do we define bad users?
+The definition of the segments of scoring: identifying the type of customers and products for which the scoring model will be used
+
+Two types of data we require:
+
+For socio-economic characteristics of the borrower, the variables that I can think of as of now are as follows:
+• The age of the borrower
+• Sex (gender)
+• The number of dependents
+• The number of loans already obtained
+• The reimbursement of past loans
+• The number of years spent practicing the current activity, lets say job or business. to see stable income
+
+The variables for the characteristics of the loan are as follows:
+• The purpose of the loan
+• The guarantee provided
+• The frequency of repayment required from the client's side and whether s/he can manage that
+• The loan amount
+• The duration of the loan
+
+
+    # 1 - age (numeric)
+    # 2 - job : type of job (categorical: "admin.","unknown","unemployed","management","housemaid","entrepreneur",
+    #                        "student","blue-collar","self-employed","retired","technician","services")
+    # 3 - marital : marital status (categorical: "married","divorced","single";
+    #                               note: "divorced" means divorced or widowed)
+    # 4 - education (categorical: "unknown","secondary","primary","tertiary")
+    # 5 - default: has credit in default? (binary: "yes","no")
+    # 6 - balance: average yearly balance, in euros (numeric)
+    # 7 - housing: has housing loan? (binary: "yes","no")
+    # 8 - loan: has personal loan? (binary: "yes","no")
+
+   
+
+a good article -- http://www.kdnuggets.com/2015/10/big-data-analytics-lenders-creditors.html

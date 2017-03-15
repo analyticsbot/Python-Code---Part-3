@@ -1,0 +1,185 @@
+It is needed to write python web-parser module for www.crunchbase.com. It has to have 2 implemented functions:
+1. def get_json_for_company(company_url)
+2. def get_json_for_person(person_url)
+
+
+Example of company_url = "https://www.crunchbase.com/organization/facebook"
+Example of person_url = "https://www.crunchbase.com/person/mark-zuckerberg"
+
+------
+get_json_for_company(company_url)
+This function should return json having the next fields:
+(if page doesnt contain information about fields then you should fill them with "None")
+
+{
+	"Statistics": {       # Fields on the left, under "Follow" button
+		"Number of followers": ...,
+		"Number of visits": ...,
+	}
+
+	"Overview": {
+		"Funding Received":  ...,
+		"Acquisitions": ...,
+		"Most Recent Funding": ...,
+		"Headquarters:": ...,
+		"Description:": ...,
+		"Founders:": [
+			{
+				"name": ...,  #(John Smith)
+				"person_url": 
+			}, 
+			...
+		]
+
+		"Categories": ...,
+		"Website": ...,
+		"Social": {
+			"twitter_url": ...,
+			"linkedin_url": ...,
+			"facebook_url": ...
+		}
+	},
+
+	"Company Details": {
+		"Founded": ...,
+		"Contact": ...,
+		"Employees": ...,
+		"_Description": ..., (Main text in the card)
+	}
+
+	"Recent Timeline Activity":{
+		"_number": ... , (Number in brackets after "Recent Timeline Activity")
+	}
+
+	"Funding Rounds": {
+		"_number": ..., (Number in brackets)
+	}
+
+	"Investors": {
+		"_number": ..., (Number in brackets)
+	}
+
+	"Board Members and Advisors": {
+		"_number": ..., (Number in brackets)
+	}
+
+	"Current Team": {
+		"_number": ..., (Number in brackets)
+	}
+
+	"News": {
+		"_number": ...,
+	}
+
+	"Offices/Locations":{
+		"_number": ...,
+	}
+
+	"Acquisitions": {
+		"_number": ...,
+	}
+
+	"Products": {
+		"_number": ...
+	},
+
+	"Competitors": {
+		"_number": ...
+	}
+
+	"Partners": {
+		"_number"
+	}
+
+	"Event Appearances": {
+		"_number"
+	}
+
+	"Images": {
+		"_number"
+	}
+
+	"Videos": {
+		"_number"
+	}
+}
+
+----------------------------------------------------------------
+get_json_for_person(person_url)
+This function should return json having the next fields:
+(if page doesnt contain information about fields then you should fill them with "None")
+
+{
+	"Statistics": {       # Fields on the left, under "Follow" button
+		"Number of followers": ...,
+	},
+
+	"Overview": {
+		"Primary Role": ...,
+		"Investments": ...,
+		"Born": ...,
+		"Gender": ...,
+		"Location": ...,
+		"Website": ...,
+		"Social" : {
+			"twitter_url": ...,
+			"linkedin_url": ...,
+			"facebook_url": ...,
+		}
+	}
+
+	"Person Details" : {
+	 	"_description": ... (main text of the card)
+	},
+
+	"Education": {
+		"Universities": [..., ..., ...]
+		"_number": ...,
+	}
+
+	"Recent Timeline Activity": {
+		"_number": ...,
+	}
+
+	"Jobs": {
+		"_number": ...
+	},
+
+	"Board & Advisor Roles": {
+		"_number": ...
+	}
+
+	"Investments": {
+		"_number": ...,
+	}
+
+
+	"News": {
+		"_number": ...,
+	}
+
+	"Memberships": {
+		"_number": ...,
+	},
+
+	"Event Appearances": {
+		"_number": ...,
+	},
+
+	"Images": {
+		"_number": ...,
+	}
+
+	"Awards": {
+		"_number": ...,
+	}
+
+}
+
+
+
+
+
+
+
+
